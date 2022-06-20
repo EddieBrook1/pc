@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能抠图</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2804712_atgzo81mzy.css">
+    <link rel="stylesheet" href="/static/css/koutu/index.css">
+</head>
+<body>
+    
+<div id="app" class="app">
+
+    <!-- 图片对比 -->
+    <div class="img-wrap" js-hook="img-wrap">
+
+        <!-- 原图 -->
+        <div class="img" js-hook="before">
+            <div class="wrap">
+                <img src="">
+            </div>
+        </div>
+
+        <!-- 结果图 -->
+        <div class="img" js-hook="after">
+            <div class="wrap">
+                <img src="">
+            </div>
+        </div>
+
+        <!-- 分割线 -->
+        <div class="divider" js-hook="divider">
+
+            <!-- 中间的圆图标 -->
+            <div class="btn">
+                <i class="iconfont icon-xiangyou-copy"></i>
+                <i class="iconfont icon-xiangyou"></i>
+            </div>
+
+            <!-- 右上角的“结果图”字样 -->
+            <div class="badge">结果图</div>
+        </div>
+
+        <!-- 左上角的“原图”字样 -->
+        <div class="badge">原图</div>
+    </div>
+
+    <div class="footer">
+        
+        <!-- 提示语 -->
+        <div class="tip">图片格式：JPEG、JPG、PNG（不支持8位、16位、64位PNG）、BMP、WEBP。 图片大小：小于3MB。 图片分辨率：分辨率大于32×32小于1280×1280。</div>
+        
+        <!-- 按钮 -->
+        <div class="btns">
+            <input
+                type="file"
+                class="file-input"
+                js-hook="file-input"
+                accept="image/png,image/jpeg,image/bmp,image/webp"
+            >
+            <div class="item style-1 upload default" js-hook="upload">
+                <span class="default-txt">上传图片</span>
+                <span class="uploading-txt">正在上传</span>
+            </div>
+            <a href="" class="item style-2" js-hook="download">
+                <i class="iconfont icon-xiazai"></i>
+                <span>结果下载</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 居中弹窗提示 -->
+    <div class="tip-pop" js-hook="tip-pop">抠图失败, 请稍后重试</div>
+</div>
+    
+
+<script src="/static/lib/jquery3.6.0.min.js"></script>
+<script src="/static/lib/fine-uploader/fine-uploader.core.min.js"></script>
+<script src="/static/js/koutu/index.js"></script>
+</body>
+</html>

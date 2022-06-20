@@ -1,0 +1,867 @@
+/* reset.css */
+.editor,
+.editor div,
+.editor span,
+.editor applet,
+.editor object,
+.editor iframe,
+.editor h1,
+.editor h2,
+.editor h3,
+.editor h4,
+.editor h5,
+.editor h6,
+.editor p,
+.editor blockquote,
+.editor pre,
+.editor a,
+.editor abbr,
+.editor acronym,
+.editor address,
+.editor big,
+.editor cite,
+.editor code,
+.editor del,
+.editor dfn,
+.editor em,
+.editor img,
+.editor ins,
+.editor kbd,
+.editor q,
+.editor s,
+.editor samp,
+.editor small,
+.editor strike,
+.editor strong,
+.editor sub,
+.editor sup,
+.editor tt,
+.editor var,
+.editor b,
+.editor u,
+.editor i,
+.editor center,
+.editor dl,
+.editor dt,
+.editor dd,
+.editor ol,
+.editor ul,
+.editor li,
+.editor fieldset,
+.editor form,
+.editor label,
+.editor legend,
+.editor table,
+.editor caption,
+.editor tbody,
+.editor tfoot,
+.editor thead,
+.editor tr,
+.editor th,
+.editor td,
+.editor article,
+.editor aside,
+.editor canvas,
+.editor details,
+.editor embed,
+.editor figure,
+.editor figcaption,
+.editor footer,
+.editor header,
+.editor hgroup,
+.editor menu,
+.editor nav,
+.editor output,
+.editor ruby,
+.editor section,
+.editor summary,
+.editor time,
+.editor mark,
+.editor audio,
+.editor video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5标签 */
+.editor article,
+.editor aside,
+.editor details,
+.editor figcaption,
+.editor figure,
+.editor footer,
+.editor header,
+.editor hgroup,
+.editor menu,
+.editor nav,
+.editor section {
+	display: block;
+}
+.editor {
+	line-height: 1;
+}
+.editor ol, .editor ul {
+	list-style: none;
+}
+.editor blockquote, .editor q {
+	quotes: none;
+}
+.editor blockquote:before, .editor blockquote:after,
+.editor q:before, .editor q:after {
+	content: '';
+	content: none;
+}
+.editor table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+html, body { 
+    background-color: #333;
+}
+
+
+.editor {
+    position: relative;
+    width: 750px;
+    margin: 0 auto;
+    background-color: white;
+    box-sizing: border-box;
+    
+    margin-top: 10px;
+}
+
+.editor * {
+
+    box-sizing: border-box;
+}
+
+.editor .entity {
+    position: relative;
+    width: 750px;
+}
+
+
+/*
+    拖拽边框线备注, 当前有模块边框线和组件边框线, 它们的样式都是一样的, 除了边框线的粗细
+    如果需要一个新的边框线, 把整个拖拽边框线的CSS复制一份
+    几个可以修改的地方: z-index, 边框线的宽度, 颜色, 拖拽点的样式;
+*/
+/* 拖拽边框线 -- 模块边框线 */
+.editor .mk-resize-lines {
+    display: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    visibility: hidden;
+    overflow: visible;
+}
+.editor .mk-resize-lines .line {
+    position: absolute;
+    border: 0 solid #7aafe1;
+    visibility: visible;
+}
+.editor .mk-resize-lines .line.top {
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    border-top-width: 3px;
+}
+.editor .mk-resize-lines .line.right {
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border-right-width: 3px;
+}
+.editor .mk-resize-lines .line.bottom {
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 3px;
+}
+.editor .mk-resize-lines .line.left {
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-left-width: 3px;
+}
+
+/* 小点 */
+.editor .mk-resize-lines .dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #fff;
+    border: 1px solid #0073bd;
+    visibility: visible;
+}
+.editor .mk-resize-lines .dot.top {
+    top: -3px;
+    left: -3px;
+    cursor: nw-resize;
+}
+.editor .mk-resize-lines .dot.top-center {
+    top: -3px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .mk-resize-lines .dot.right {
+    top: -3px;
+    right: -3px;
+    cursor: ne-resize;
+}
+.editor .mk-resize-lines .dot.right-center {
+    top: 50%;
+    right: -3px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .mk-resize-lines .dot.bottom {
+    bottom: -3px;
+    right: -3px;
+    cursor: nw-resize;
+}
+
+.editor .mk-resize-lines .dot.bottom-center {
+    bottom: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+    
+    /* 微调, 自定义拖拽点样式 */
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: none;
+}
+.editor .mk-resize-lines .dot.bottom-center i {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+.editor .mk-resize-lines .dot.bottom-center i:before,
+.editor .mk-resize-lines .dot.bottom-center i:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.editor .mk-resize-lines .dot.bottom-center i:before {
+    
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #7aafe1;
+    top: 0;
+}
+.editor .mk-resize-lines .dot.bottom-center i:after {
+    
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #7aafe1;
+    bottom: 0;
+}
+
+
+.editor .mk-resize-lines .dot.left {
+    bottom: -3px;
+    left: -3px;
+    cursor: ne-resize;
+}
+.editor .mk-resize-lines .dot.left-center {
+    left: -3px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+
+/* 小点的遮罩 */
+.editor .mk-resize-lines .dot-cover {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+    visibility: visible;
+}
+.editor .mk-resize-lines .dot-cover.top {
+    top: -8px;
+    left: -8px;
+    cursor: nw-resize;
+}
+.editor .mk-resize-lines .dot-cover.top-center {
+    top: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .mk-resize-lines .dot-cover.right {
+    top: -8px;
+    right: -8px;
+    cursor: ne-resize;
+}
+.editor .mk-resize-lines .dot-cover.right-center {
+    top: 50%;
+    right: -8px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .mk-resize-lines .dot-cover.bottom {
+    bottom: -8px;
+    right: -8px;
+    cursor: nw-resize;
+}
+.editor .mk-resize-lines .dot-cover.bottom-center {
+    bottom: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+
+    /* 微调, 自定义小点样式 */
+    width: 20px;
+    height: 20px;
+}
+.editor .mk-resize-lines .dot-cover.left {
+    bottom: -8px;
+    left: -8px;
+    cursor: ne-resize;
+}
+.editor .mk-resize-lines .dot-cover.left-center {
+    left: -8px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+/* end -- 拖拽边框线 -- 模块边框线 */
+
+
+/*
+    拖拽边框线备注, 当前有模块边框线和组件边框线, 它们的样式都是一样的, 除了边框线的粗细
+    如果需要一个新的边框线, 把整个拖拽边框线的CSS复制一份
+    几个可以修改的地方: z-index, 边框线的宽度, 颜色, 拖拽点的样式;
+*/
+/* 拖拽边框线 -- 子项边框线 */
+.editor .component-resize-lines {
+    display: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    visibility: hidden;
+    overflow: visible;
+}
+.editor .component-resize-lines .line {
+    position: absolute;
+    border: 0 dashed #3089dc;
+    visibility: visible;
+}
+.editor .component-resize-lines .line.top {
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    border-top-width: 1px;
+}
+.editor .component-resize-lines .line.right {
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border-right-width: 1px;
+}
+.editor .component-resize-lines .line.bottom {
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 1px;
+}
+.editor .component-resize-lines .line.left {
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-left-width: 1px;
+}
+
+/* 小点 */
+.editor .component-resize-lines .dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #fff;
+    border: 1px solid #0073bd;
+    visibility: visible;
+}
+.editor .component-resize-lines .dot.top {
+    top: -3px;
+    left: -3px;
+    cursor: nw-resize;
+}
+.editor .component-resize-lines .dot.top-center {
+    top: -3px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .component-resize-lines .dot.right {
+    top: -3px;
+    right: -3px;
+    cursor: ne-resize;
+}
+.editor .component-resize-lines .dot.right-center {
+    top: 50%;
+    right: -3px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .component-resize-lines .dot.bottom {
+    bottom: -3px;
+    right: -3px;
+    cursor: nw-resize;
+}
+.editor .component-resize-lines .dot.bottom-center {
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .component-resize-lines .dot.left {
+    bottom: -3px;
+    left: -3px;
+    cursor: ne-resize;
+}
+.editor .component-resize-lines .dot.left-center {
+    left: -3px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+
+/* 小点的遮罩 */
+.editor .component-resize-lines .dot-cover {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+    visibility: visible;
+}
+.editor .component-resize-lines .dot-cover.top {
+    top: -8px;
+    left: -8px;
+    cursor: nw-resize;
+}
+.editor .component-resize-lines .dot-cover.top-center {
+    top: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .component-resize-lines .dot-cover.right {
+    top: -8px;
+    right: -8px;
+    cursor: ne-resize;
+}
+.editor .component-resize-lines .dot-cover.right-center {
+    top: 50%;
+    right: -8px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .component-resize-lines .dot-cover.bottom {
+    bottom: -8px;
+    right: -8px;
+    cursor: nw-resize;
+}
+.editor .component-resize-lines .dot-cover.bottom-center {
+    bottom: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .component-resize-lines .dot-cover.left {
+    bottom: -8px;
+    left: -8px;
+    cursor: ne-resize;
+}
+.editor .component-resize-lines .dot-cover.left-center {
+    left: -8px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+/* end - 拖拽边框线 -- 子项边框线 */
+
+
+/*
+    拖拽边框线备注, 当前有模块边框线和组件边框线, 它们的样式都是一样的, 除了边框线的粗细
+    如果需要一个新的边框线, 把整个拖拽边框线的CSS复制一份
+    几个可以修改的地方: z-index, 边框线的宽度, 颜色, 拖拽点的样式;
+*/
+/* 拖拽边框线 -- 裁剪边框线 */
+.editor .trim-resize-lines {
+    display: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    visibility: hidden;
+    overflow: visible;
+}
+.editor .trim-resize-lines .line {
+    position: absolute;
+    border: 0 solid #3089dc;
+    visibility: visible;
+}
+.editor .trim-resize-lines .line.top {
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    border-top-width: 1px;
+}
+.editor .trim-resize-lines .line.right {
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border-right-width: 1px;
+}
+.editor .trim-resize-lines .line.bottom {
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 1px;
+}
+.editor .trim-resize-lines .line.left {
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-left-width: 1px;
+}
+
+/* 小点 */
+.editor .trim-resize-lines .dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: 0 solid #3089dc;
+    visibility: visible;
+}
+.editor .trim-resize-lines .dot.top {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+    
+    border-top-width: 4px;
+    border-left-width: 4px;
+}
+.editor .trim-resize-lines .dot.top-center {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+
+    border-top-width: 4px;
+}
+.editor .trim-resize-lines .dot.right {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+    
+    border-top-width: 4px;
+    border-right-width: 4px;
+}
+.editor .trim-resize-lines .dot.right-center {
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+
+    border-right-width: 4px;
+}
+.editor .trim-resize-lines .dot.bottom {
+    bottom: 0;
+    right: 0;
+    cursor: nw-resize;
+    
+    border-bottom-width: 4px;
+    border-right-width: 4px;
+}
+.editor .trim-resize-lines .dot.bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+
+    border-bottom-width: 4px;
+}
+.editor .trim-resize-lines .dot.left {
+    bottom: 0;
+    left: 0;
+    cursor: ne-resize;
+    
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}
+.editor .trim-resize-lines .dot.left-center {
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+    
+    border-left-width: 4px;
+}
+
+/* 小点的遮罩 */
+.editor .trim-resize-lines .dot-cover {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    visibility: visible;
+}
+.editor .trim-resize-lines .dot-cover.top {
+    top: -5px;
+    left: -5px;
+    cursor: nw-resize;
+}
+.editor .trim-resize-lines .dot-cover.top-center {
+    top: -5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .trim-resize-lines .dot-cover.right {
+    top: -5px;
+    right: -5px;
+    cursor: ne-resize;
+}
+.editor .trim-resize-lines .dot-cover.right-center {
+    top: 50%;
+    right: -5px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .trim-resize-lines .dot-cover.bottom {
+    bottom: -5px;
+    right: -5px;
+    cursor: nw-resize;
+}
+.editor .trim-resize-lines .dot-cover.bottom-center {
+    bottom: -5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .trim-resize-lines .dot-cover.left {
+    bottom: -5px;
+    left: -5px;
+    cursor: ne-resize;
+}
+.editor .trim-resize-lines .dot-cover.left-center {
+    left: -5px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+/* end - 拖拽边框线 -- 裁剪边框线 */
+
+
+/*
+    拖拽边框线备注, 当前有模块边框线和组件边框线, 它们的样式都是一样的, 除了边框线的粗细
+    如果需要一个新的边框线, 把整个拖拽边框线的CSS复制一份
+    几个可以修改的地方: z-index, 边框线的宽度, 颜色, 拖拽点的样式;
+*/
+/* 拖拽边框线 -- 热区 */
+.editor .hotspot-resize-lines {
+    display: none;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    visibility: hidden;
+    overflow: visible;
+}
+.editor .hotspot-resize-lines .line {
+    position: absolute;
+    border: 0 dashed #3089dc;
+    visibility: visible;
+}
+.editor .hotspot-resize-lines .line.top {
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    border-top-width: 1px;
+}
+.editor .hotspot-resize-lines .line.right {
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border-right-width: 1px;
+}
+.editor .hotspot-resize-lines .line.bottom {
+    width: 100%;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 1px;
+}
+.editor .hotspot-resize-lines .line.left {
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-left-width: 1px;
+}
+
+/* 小点 */
+.editor .hotspot-resize-lines .dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: #fff;
+    border: 1px solid #0073bd;
+    visibility: visible;
+}
+.editor .hotspot-resize-lines .dot.top {
+    top: -3px;
+    left: -3px;
+    cursor: nw-resize;
+}
+.editor .hotspot-resize-lines .dot.top-center {
+    top: -3px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .hotspot-resize-lines .dot.right {
+    top: -3px;
+    right: -3px;
+    cursor: ne-resize;
+}
+.editor .hotspot-resize-lines .dot.right-center {
+    top: 50%;
+    right: -3px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .hotspot-resize-lines .dot.bottom {
+    bottom: -3px;
+    right: -3px;
+    cursor: nw-resize;
+}
+.editor .hotspot-resize-lines .dot.bottom-center {
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .hotspot-resize-lines .dot.left {
+    bottom: -3px;
+    left: -3px;
+    cursor: ne-resize;
+}
+.editor .hotspot-resize-lines .dot.left-center {
+    left: -3px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+
+/* 小点的遮罩 */
+.editor .hotspot-resize-lines .dot-cover {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background-color: transparent;
+    visibility: visible;
+}
+.editor .hotspot-resize-lines .dot-cover.top {
+    top: -8px;
+    left: -8px;
+    cursor: nw-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.top-center {
+    top: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.right {
+    top: -8px;
+    right: -8px;
+    cursor: ne-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.right-center {
+    top: 50%;
+    right: -8px;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.bottom {
+    bottom: -8px;
+    right: -8px;
+    cursor: nw-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.bottom-center {
+    bottom: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: n-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.left {
+    bottom: -8px;
+    left: -8px;
+    cursor: ne-resize;
+}
+.editor .hotspot-resize-lines .dot-cover.left-center {
+    left: -8px;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: w-resize;
+}
+/* end - 拖拽边框线 -- 子项边框线 */
+
+
+/* 文字组件 */
+.editor div[el-type="component-text"] div:empty:before {
+    color: #000;
+    font-size: 14px;
+    opacity: 0.4;
+    content: attr(placeholder);
+}
+
+
+/* 辅助线 */
+.guide-line {
+    display: none;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+}
+.editor .guide-line.top,
+.editor .guide-line.bottom {
+    height: 1px;
+}
+.editor .guide-line.left,
+.editor .guide-line.right {
+    width: 1px;
+}

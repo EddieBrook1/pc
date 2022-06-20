@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btn">被点击</button>
+
+    <!-- <input type="file"> -->
+
+
+<script src="/static/lib/jquery3.6.0.min.js"></script>
+<script src="/static/lib/fine-uploader/fine-uploader.core.min.js"></script>
+<script>
+
+    $('#btn').on('click', function () {
+
+        console.log('按钮被点击')
+    })
+
+    // 实例化上传插件, https://docs.fineuploader.com/branch/master/api/events.html#cancel
+    // let uploader = new qq.FineUploaderBasic({
+    //         autoUpload: true,
+    //         maxConnections: 3,
+    //         request: {
+    //             endpoint: 'http://test.qianzhiyu.net/common/upload',
+    //             // endpoint: 'http://test.qianzhiyu.net/upload',
+    //             methods: 'POST',
+    //         },
+    //         chunking: {
+    //             enabled: true,
+    //             mandatory: true,
+    //             partSize: 1024 * 1024 * 5
+    //         },
+
+    //         // 事件由vue里面的方法代处理
+    //         callbacks: {
+        
+    //             // 上传前
+    //             onUpload (id, name) {},
+                
+    //             // 上传完成
+    //             onComplete (id, name, res, xhr) {},
+        
+    //             // 全部完成
+    //             onAllComplete (succ_arr, fail_arr) {},
+        
+    //             // 出错
+    //             onError (id, name, reason, xhr) {},
+        
+    //             // 过程
+    //             onProgress (id, name, upload_bytes, total_bytes) {},
+        
+    //             // 全部过程
+    //             onTotalProgress (total_upload_bytes, total_bytes) {},
+        
+    //             // 分片上传前
+    //             onUploadChunk (id, name, chunk_data) {},
+
+
+    //             // 状态改变
+    //             onStatusChange (id, old_status, new_status) {},
+    //         },
+    //     })
+
+
+
+    // document.querySelector('input').onchange = function () {
+
+    //     uploader.addFiles(this.files)
+    // }
+
+</script>
+</body>
+</html>

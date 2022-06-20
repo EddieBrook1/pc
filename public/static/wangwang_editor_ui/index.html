@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旺铺编辑器-ui</title>
+    <link rel="stylesheet" href="./wangwang_editor/index.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+
+<div class="wrap">
+
+    <!-- 编辑器 -->
+    <div class="editor-wrap">
+        <div id="editor" class="editor"></div>
+    </div>
+    
+    <!-- 工具栏 -->
+    <div class="tool-wrap">
+        <div class="btn">当前同步的商品: 584181130977</div>
+        <div class="btn J_download-pic-mk">
+            下载图片-按模块
+            <span>0%</span>
+        </div>
+        <div class="btn J_download-pic-960">
+            下载图片-自定义
+            <span>0%</span>
+        </div>
+        <div class="btn J_sync-mk">
+            同步-按模块切割
+            <span></span>
+        </div>
+        <div class="btn J_sync-960">
+            同步-自定义
+            <span></span>
+        </div>
+        <div class="btn J_add-hotspot">添加热区</div>
+        <div class="btn J_add-origin-mk">插入一个原图模块</div>
+
+        
+        <!-- 日志 -->
+        <div class="log"></div>
+    </div>
+</div>
+
+
+<script src="./fine-uploader/fine-uploader.core.min.js"></script>
+<script src="./Stuk-jszip/dist/jszip.min.js"></script>
+<script src="./FileSaver.js/dist/FileSaver.min.js"></script>
+<script src="./jquery3.6.0.min.js"></script>
+<script src="./wangwang_editor/data.js"></script>
+<script src="./wangwang_editor/polyfill.min.js"></script>
+<script src="./wangwang_editor/html2canvas.min.js"></script>
+<script src="./wangwang_editor/index.js"></script>
+<script>
+
+    data.shift()
+    data.shift()
+    data.shift()
+    data.shift()
+
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+    data.pop()
+
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    // data.shift()
+    window.editor = Editor('#editor', data)
+</script>
+<script src="./index.js"></script>
+</body>
+</html>

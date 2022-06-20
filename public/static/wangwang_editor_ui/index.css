@@ -1,0 +1,38 @@
+html, body { 
+    background-color: #333;
+    margin: 0;
+}
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.tool-wrap {
+
+    background-color: #f1f1f1;
+    width: 400px;
+    box-sizing: border-box;
+}
+
+.tool-wrap .btn {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.tool-wrap .btn:hover {
+    color: red;
+    background-color: yellow;
+}
+
+.log {
+    margin-top: 50px;
+    height: 500px;
+    overflow-y: auto;
+}
